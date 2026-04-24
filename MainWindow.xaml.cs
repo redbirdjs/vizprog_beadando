@@ -26,12 +26,14 @@ namespace vizprog_beadando
         {
             InitializeComponent();
 
+            this.Title = "Autóbérlés - Autók";
             dgAutok.Visibility = Visibility.Visible;
             dgAutok.ItemsSource = db.cn.Autok.ToList();
         }
 
         private void menuAutokClick(object sender, RoutedEventArgs e)
         {
+            this.Title = "Autóbérlés - Autók";
             dgBerlesek.Visibility = Visibility.Collapsed;
             dgAutok.Visibility = Visibility.Visible;
             dgAutok.ItemsSource = db.cn.Autok.ToList();
@@ -40,6 +42,7 @@ namespace vizprog_beadando
 
         private void menuBerlesekClick(object sender, RoutedEventArgs e)
         {
+            this.Title = "Autóbérlés - Bérlések";
             dgAutok.Visibility = Visibility.Collapsed;
             dgBerlesek.Visibility = Visibility.Visible;
             dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList();

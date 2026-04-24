@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore context-namespace="Autoberles" namespace="Autoberles" p1:name="cnAutoberles" p1:Guid="b1cfa306-a1b9-4f21-8552-c6867ffe0612" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="Auto" entity-set="Autok" table="Autok" p1:Guid="5c0928ed-a7c1-4e1d-865c-4ddced9198ed">
+    <id name="id" type="Int16" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="500bdcfd-33b4-48f3-bae1-6540cf8dc737">
+      <column name="" />
+    </id>
+    <property name="marka" type="String" p1:ValidateRequired="true" p1:Guid="98cd9665-06e9-4eca-bcb9-81c3101a57f9">
+      <column name="" />
+    </property>
+    <property name="tipus" type="String" p1:ValidateRequired="true" p1:Guid="68e23632-9966-47dc-8eee-90cac3bf6129">
+      <column name="" />
+    </property>
+    <property name="berles_dij" type="Int16" p1:ValidateRequired="true" p1:Guid="8d8e58f8-aec6-4cfd-88c7-a03a77fe4115">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Berles" entity-set="Berlesek" table="Berlesek" p1:Guid="4f4c46a7-5236-46ae-9220-7a90f94ea562">
+    <id name="id" type="Int16" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="8f7d4cad-70bb-4493-85b4-d040ddbb6bea">
+      <column name="" />
+    </id>
+    <property name="berlo" type="String" p1:ValidateRequired="true" p1:Guid="830c95ff-605e-48c0-8c5b-35cfa0e79932">
+      <column name="" />
+    </property>
+    <property name="kezdo_datum" type="DateTime" p1:ValidateRequired="true" p1:Guid="34caf980-08af-4607-92c0-42042f794e39">
+      <column name="" />
+    </property>
+    <property name="vege_datum" type="DateTime" p1:ValidateRequired="true" p1:Guid="c2022fb5-2004-4444-ae3a-d1401ff1aa64">
+      <column name="" />
+    </property>
+    <property name="autoId" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="6794943c-0ffa-4301-abd6-a1456d4ab7eb">
+      <column name="" />
+    </property>
+  </class>
+  <associations>
+    <association name="Auto_Berles" cardinality="OneToMany" p1:Guid="1b7e7d88-4d61-4be1-bdc1-ab7d81bdf476">
+      <end1 multiplicity="One" name="Auto" class="Berles" relation-class="Auto" constrained="True" lazy="False" p1:Guid="4255248e-14de-44a9-8b7c-00a277e4d393">
+        <property name="id" />
+      </end1>
+      <end2 multiplicity="Many" name="Berles" class="Auto" relation-class="Berles" lazy="False" p1:Guid="4db7a727-7043-4cb3-9157-984255f16f62">
+        <property name="autoId" />
+      </end2>
+    </association>
+  </associations>
+</efcore>

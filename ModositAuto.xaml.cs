@@ -26,7 +26,7 @@ namespace vizprog_beadando
         {
             InitializeComponent();
 
-            this.Title = auto == null ? "Adat hozzáadás" : $"Módosítás (Autó #{auto?.id}";
+            this.Title = auto == null ? "Adat hozzáadás" : $"Módosítás (Autó #{auto?.id})";
             this.auto = auto;
 
             submitBtn.Content = auto == null ? "Hozzáadás" : "Módosítás";

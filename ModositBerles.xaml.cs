@@ -27,7 +27,7 @@ namespace vizprog_beadando
         {
             InitializeComponent();
 
-            this.Title = berles == null ? "Adat hozzáadás" : $"Módosítás (Autó #{berles?.id}";
+            this.Title = berles == null ? "Adat hozzáadás" : $"Módosítás (Bérlés #{berles?.id})";
             this.berles = berles;
             this.db = db;
 

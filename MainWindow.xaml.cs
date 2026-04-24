@@ -78,7 +78,7 @@ namespace vizprog_beadando
             }
             else
             {
-                ModositBerles mb = new(null);
+                ModositBerles mb = new(db, null);
                 mb.ShowDialog();
 
                 if (mb.berles == null) return;
@@ -121,7 +121,7 @@ namespace vizprog_beadando
                 }
                 else
                 {
-                    ModositBerles mb = new((Berles)dg.SelectedItems[i]!);
+                    ModositBerles mb = new(db, (Berles)dg.SelectedItems[i]!);
                     mb.ShowDialog();
 
                     if (mb.berles == null) continue;

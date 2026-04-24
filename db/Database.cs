@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace vizprog_beadando.db
 {
-    internal class Database
+    public class Database
     {
         public cnAutoberles cn { get; set; }
 

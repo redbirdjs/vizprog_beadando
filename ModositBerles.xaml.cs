@@ -20,15 +20,16 @@ namespace vizprog_beadando
     /// </summary>
     public partial class ModositBerles : Window
     {
-        private Database db = new();
+        private Database db;
         public Berles? berles;
 
-        public ModositBerles(Berles? berles)
+        public ModositBerles(Database db, Berles? berles)
         {
             InitializeComponent();
 
             this.Title = berles == null ? "Adat hozzáadás" : $"Módosítás (Autó #{berles?.id}";
             this.berles = berles;
+            this.db = db;
 
             submitBtn.Content = berles == null ? "Hozzáadás" : "Módosítás";
 

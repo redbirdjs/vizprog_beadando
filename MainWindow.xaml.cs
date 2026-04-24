@@ -17,7 +17,7 @@ namespace vizprog_beadando
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Database autoBerles = new Database();
+        private Database db = new();
 
         public MainWindow()
         {

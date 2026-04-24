@@ -63,7 +63,37 @@ namespace vizprog_beadando
 
         private void menuUj(object sender, RoutedEventArgs e)
         {
+            if (dgAutok.Visibility == Visibility.Visible)
+            {
+                ModositAuto ma = new(null);
+                ma.ShowDialog();
 
+                if (ma.auto == null) return;
+
+                db.cn.Autok.Add(new Auto {
+                    marka = ma.auto.marka,
+                    tipus = ma.auto.tipus,
+                    berles_dij = ma.auto.berles_dij
+                });
+            }
+            else
+            {
+                ModositBerles mb = new(null);
+                mb.ShowDialog();
+
+                if (mb.berles == null) return;
+
+                db.cn.Berlesek.Add(new Berles
+                {
+                    berlo = mb.berles.berlo,
+                    kezdo_datum = mb.berles.kezdo_datum,
+                    vege_datum = mb.berles.vege_datum,
+                    Auto = db.cn.Autok.First(a => a.id == mb.berles.Auto.id)
+                });
+            }
+
+            db.cn.SaveChanges();
+            updateData();
         }
 
         private void menuModosit(object sender, RoutedEventArgs e)
@@ -77,18 +107,34 @@ namespace vizprog_beadando
 
             for (int i = 0; i < dg.SelectedItems.Count; i++)
             {
-                if (dg.SelectedItems[i] is Auto auto)
+                if (dg == dgAutok)
                 {
-                    ModositAuto ma = new ModositAuto(auto);
+                    ModositAuto ma = new((Auto)dg.SelectedItems[i]!);
                     ma.ShowDialog();
+
+                    if (ma.auto == null) continue;
+
+                    Auto a = db.cn.Autok.First(a => a.id == ma.auto.id);
+                    a.marka = ma.auto.marka;
+                    a.tipus = ma.auto.tipus;
+                    a.berles_dij = ma.auto.berles_dij;
                 }
-                else if (dg.SelectedItems[i] is Berles berles)
+                else
                 {
-                    ModositBerles mb = new ModositBerles(berles);
+                    ModositBerles mb = new((Berles)dg.SelectedItems[i]!);
                     mb.ShowDialog();
+
+                    if (mb.berles == null) continue;
+
+                    Berles b = db.cn.Berlesek.First(b => b.id == mb.berles.id);
+                    b.berlo = mb.berles.berlo;
+                    b.kezdo_datum = mb.berles.kezdo_datum;
+                    b.vege_datum = mb.berles.vege_datum;
+                    b.Auto = db.cn.Autok.First(a => a.id == mb.berles.Auto.id);
                 }
             }
 
+            db.cn.SaveChanges();
             updateData();
         }
 

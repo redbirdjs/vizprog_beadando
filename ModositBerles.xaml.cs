@@ -1,6 +1,7 @@
 ﻿using Autoberles;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using vizprog_beadando.db;
 
 namespace vizprog_beadando
 {
@@ -18,9 +20,49 @@ namespace vizprog_beadando
     /// </summary>
     public partial class ModositBerles : Window
     {
-        public ModositBerles(Berles berles)
+        private Database db = new();
+        public Berles? berles;
+
+        public ModositBerles(Berles? berles)
         {
             InitializeComponent();
+
+            this.Title = berles == null ? "Adat hozzáadás" : $"Módosítás (Autó #{berles?.id}";
+            this.berles = berles;
+
+            submitBtn.Content = berles == null ? "Hozzáadás" : "Módosítás";
+
+            auto.ItemsSource = db.cn.Autok.ToList().Select(a => $"#{a.id} {a.marka} {a.tipus}").ToList();
+
+            if (berles != null)
+            {
+                berlo.Text = berles.berlo;
+                kezdo_datum.Text = berles.kezdo_datum.ToString();
+                vege_datum.Text = berles.vege_datum.ToString();
+                auto.SelectedItem = $"#{berles.Auto.id} {berles.Auto.marka} {berles.Auto.tipus}";
+            }
+        }
+
+        private void modositClick(object sender, RoutedEventArgs e)
+        {
+            short id = this.berles != null ? this.berles.id : (short)(-1);
+            short autoId = short.Parse(auto.SelectedItem.ToString()!.Split(' ')[0].Split('#')[1]);
+
+            this.berles = new Berles()
+            {
+                id = id,
+                berlo = berlo.Text,
+                kezdo_datum = DateTime.Parse(kezdo_datum.Text),
+                vege_datum = DateTime.Parse(vege_datum.Text),
+                Auto = db.cn.Autok.First(a => a.id == autoId)
+            };
+
+            this.Close();
+        }
+
+        private void megseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

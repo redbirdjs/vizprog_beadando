@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vizprog_beadando"
         mc:Ignorable="d"
-        Title="ModositAuto" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="ModositAuto" Height="200" Width="400">
+    <DockPanel Margin="4" VerticalAlignment="Top">
+        <DockPanel DockPanel.Dock="Top">
+            <Label Content="Márka" Width="60" VerticalAlignment="Center" />
+            <TextBox x:Name="marka" VerticalAlignment="Center" Padding="2" />
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Label Content="Típus" Width="60" VerticalAlignment="Center" />
+            <TextBox x:Name="tipus" VerticalAlignment="Center" Padding="2" />
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Label Content="Bérlés díj" Width="60" VerticalAlignment="Center" />
+            <TextBox x:Name="berles_dij" VerticalAlignment="Center" Padding="2" />
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" Margin="0 4" HorizontalAlignment="Center">
+            <Button x:Name="submitBtn" Content="Módosít" Click="modositClick" Width="100" Margin="4 0" />
+            <Button Content="Mégse" Click="megseClick" Width="100" Margin="4 0" />
+        </DockPanel>
+    </DockPanel>
 </Window>

@@ -1,6 +1,7 @@
 ﻿using Autoberles;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using vizprog_beadando.db;
 
 namespace vizprog_beadando
 {
@@ -18,9 +20,49 @@ namespace vizprog_beadando
     /// </summary>
     public partial class ModositAuto : Window
     {
-        public ModositAuto(Auto auto)
+        private Database db = new();
+        public Auto? auto;
+
+        public ModositAuto(Auto? auto)
         {
             InitializeComponent();
+
+            this.Title = auto == null ? "Adat hozzáadás" : $"Módosítás (Autó #{auto?.id}";
+            this.auto = auto;
+
+            submitBtn.Content = auto == null ? "Hozzáadás" : "Módosítás";
+
+            if (auto != null)
+            {
+                marka.Text = auto.marka;
+                tipus.Text = auto.tipus;
+                berles_dij.Text = auto.berles_dij.ToString();
+            }
+        }
+
+        private void modositClick(object sender, RoutedEventArgs e)
+        {
+            if (!int.TryParse(berles_dij.Text, out int berlesDij))
+            {
+                MessageBox.Show("A bérlés díjának egy egész számnak kell lennie.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            short id = this.auto != null ? this.auto.id : (short)(-1);
+            this.auto = new Auto()
+            {
+                id = id,
+                marka = marka.Text,
+                tipus = tipus.Text,
+                berles_dij = berlesDij
+            };
+
+            this.Close();
+        }
+
+        private void megseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using Autoberles;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +25,77 @@ namespace vizprog_beadando
         public MainWindow()
         {
             InitializeComponent();
+
+            dgAutok.Visibility = Visibility.Visible;
+            dgAutok.ItemsSource = db.cn.Autok.ToList();
+        }
+
+        private void menuAutokClick(object sender, RoutedEventArgs e)
+        {
+            dgBerlesek.Visibility = Visibility.Collapsed;
+            dgAutok.Visibility = Visibility.Visible;
+            dgAutok.ItemsSource = db.cn.Autok.ToList();
+            kereses.Text = "";
+        }
+
+        private void menuBerlesekClick(object sender, RoutedEventArgs e)
+        {
+            dgAutok.Visibility = Visibility.Collapsed;
+            dgBerlesek.Visibility = Visibility.Visible;
+            dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList();
+            kereses.Text = "";
+        }
+
+        private void menuUj(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuModosit(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuTorles(object sender, RoutedEventArgs e)
+        {
+            DataGrid dg = dgAutok.Visibility == Visibility.Visible ? dgAutok : dgBerlesek;
+            if (dg.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Nincs kijelölt elem!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show($"Törölni szeretné a kijelölt {(dg.SelectedItems.Count == 1 ? "elemet" : "elemeket")}?", "Törlés", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
+            if (result == MessageBoxResult.Yes)
+            {
+                foreach (var item in dg.SelectedItems)
+                {
+                    if (dg == dgAutok)
+                        db.cn.Autok.Remove(db.cn.Autok.Single(a => a.id == ((Auto)item).id));
+                    else
+                        db.cn.Berlesek.Remove(db.cn.Berlesek.Single(b => b.id == ((Berles)item).id));
+                }
+            }
+
+            db.cn.SaveChanges();
+
+            if (dg == dgAutok)
+                dgAutok.ItemsSource = db.cn.Autok.ToList();
+            else
+                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList();
+        }
+
+        private void keresesChange(object sender, TextChangedEventArgs e)
+        {
+            if (dgAutok.Visibility == Visibility.Visible)
+            {
+                dgAutok.ItemsSource = db.cn.Autok.ToList().FindAll(i => i.marka.ToLower().Contains(kereses.Text.ToLower()));
+            }
+            else
+            {
+                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList().FindAll(i => i.berlo.ToLower().Contains(kereses.Text.ToLower()));
+            }
         }
     }
 }

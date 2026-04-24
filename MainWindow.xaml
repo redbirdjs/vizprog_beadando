@@ -6,7 +6,39 @@
         xmlns:local="clr-namespace:vizprog_beadando"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Adatok kiválasztása">
+                <MenuItem Header="Autók" Click="menuAutokClick"/>
+                <MenuItem Header="Bérlések" Click="menuBerlesekClick"/>
+            </MenuItem>
+            <MenuItem Header="Hozzáadás" Click="menuUj" />
+            <MenuItem Header="Módosítás" Click="menuModosit" />
+            <MenuItem Header="Törlés" Click="menuTorles" />
+        </Menu>
 
-    </Grid>
+        <DockPanel DockPanel.Dock="Top" Margin="0 2 4 2">
+            <Label Content="Keresés:" VerticalAlignment="Center" />
+            <TextBox x:Name="kereses" VerticalAlignment="Center" Padding="2" TextChanged="keresesChange" />
+        </DockPanel>
+
+        <DataGrid x:Name="dgAutok" IsReadOnly="True" DockPanel.Dock="Top" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Márka" Binding="{Binding marka}" />
+                <DataGridTextColumn Header="Típus" Binding="{Binding tipus}" />
+                <DataGridTextColumn Header="Bérlés díj" Binding="{Binding berles_dij}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="dgBerlesek" IsReadOnly="True" DockPanel.Dock="Top" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Bérlő" Binding="{Binding berlo}" />
+                <DataGridTextColumn Header="Bérlés kezdete" Binding="{Binding kezdo_datum}" />
+                <DataGridTextColumn Header="Bérlés vége" Binding="{Binding vege_datum}" />
+                <DataGridTextColumn Header="Autó ID" Binding="{Binding Auto.id}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
 </Window>

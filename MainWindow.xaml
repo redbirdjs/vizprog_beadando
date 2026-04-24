@@ -12,10 +12,13 @@
                 <MenuItem Header="Autók" Click="menuAutokClick"/>
                 <MenuItem Header="Bérlések" Click="menuBerlesekClick"/>
             </MenuItem>
+            <MenuItem Header="Kereső">
+                <MenuItem Header="Autók" Click="menuAutoKereso"/>
+                <MenuItem Header="Bérlések" Click="menuBerlesKereso"/>
+            </MenuItem>
             <MenuItem Header="Hozzáadás" Click="menuUj" />
             <MenuItem Header="Módosítás" Click="menuModosit" />
             <MenuItem Header="Törlés" Click="menuTorles" />
-            <MenuItem Header="Kereső" Click="menuKereso" />
         </Menu>
 
         <DockPanel DockPanel.Dock="Top" Margin="0 2 4 2">

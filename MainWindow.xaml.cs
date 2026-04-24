@@ -169,7 +169,12 @@ namespace vizprog_beadando
             updateData();
         }
 
-        private void menuKereso(object sender, RoutedEventArgs e)
+        private void menuAutoKereso(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuBerlesKereso(object sender, RoutedEventArgs e)
         {
 
         }

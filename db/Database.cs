@@ -27,6 +27,7 @@ namespace vizprog_beadando.db
 
         private void FillWithData()
         {
+            Random rnd = new Random();
             int db = 0;
             try
             {
@@ -44,13 +45,38 @@ namespace vizprog_beadando.db
                     cn.Autok.Add(row);
                     db++;
                 }
+                r.Close();
+                cn.SaveChanges();
+
+                r = new StreamReader("db/berlesek.csv");
+                while (!r.EndOfStream)
+                {
+                    string[] data = r.ReadLine()!.Split(',');
+                    Auto rndAuto = cn.Autok.ToList().OrderBy(x => rnd.Next()).First();
+                    Berles row = new Berles
+                    {
+                        berlo = data[0],
+                        kezdo_datum = DateTime.ParseExact(data[1], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
+                        vege_datum = DateTime.ParseExact(data[2], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
+                        Auto = rndAuto
+                    };
+
+                    cn.Berlesek.Add(row);
+                    db++;
+                }
 
                 MessageBox.Show($"{db} példa adat feltöltése sikeresen megtörtént!", "Automatikus adatfeltöltés");
+                cn.SaveChanges();
                 r.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Hiba történt a fájlok betöltése közben!\n{ex.Message}");
+
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show(ex.InnerException.Message);
+                }
             }
         }
     }

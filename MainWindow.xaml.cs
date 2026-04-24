@@ -28,7 +28,19 @@ namespace vizprog_beadando
 
             this.Title = "Autóbérlés - Autók";
             dgAutok.Visibility = Visibility.Visible;
-            dgAutok.ItemsSource = db.cn.Autok.ToList();
+            updateData();
+        }
+       
+        private void updateData()
+        {
+            if (dgAutok.Visibility == Visibility.Visible)
+            {
+                dgAutok.ItemsSource = db.cn.Autok.ToList().FindAll(i => i.marka.ToLower().Contains(kereses.Text.ToLower()));
+            }
+            else
+            {
+                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList().FindAll(i => i.berlo.ToLower().Contains(kereses.Text.ToLower()));
+            }
         }
 
         private void menuAutokClick(object sender, RoutedEventArgs e)
@@ -36,8 +48,8 @@ namespace vizprog_beadando
             this.Title = "Autóbérlés - Autók";
             dgBerlesek.Visibility = Visibility.Collapsed;
             dgAutok.Visibility = Visibility.Visible;
-            dgAutok.ItemsSource = db.cn.Autok.ToList();
             kereses.Text = "";
+            updateData();
         }
 
         private void menuBerlesekClick(object sender, RoutedEventArgs e)
@@ -45,8 +57,8 @@ namespace vizprog_beadando
             this.Title = "Autóbérlés - Bérlések";
             dgAutok.Visibility = Visibility.Collapsed;
             dgBerlesek.Visibility = Visibility.Visible;
-            dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList();
             kereses.Text = "";
+            updateData();
         }
 
         private void menuUj(object sender, RoutedEventArgs e)
@@ -77,14 +89,7 @@ namespace vizprog_beadando
                 }
             }
 
-            if (dgAutok.Visibility == Visibility.Visible)
-            {
-                dgAutok.ItemsSource = db.cn.Autok.ToList().FindAll(i => i.marka.ToLower().Contains(kereses.Text.ToLower()));
-            }
-            else
-            {
-                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList().FindAll(i => i.berlo.ToLower().Contains(kereses.Text.ToLower()));
-            }
+            updateData();
         }
 
         private void menuTorles(object sender, RoutedEventArgs e)
@@ -110,27 +115,12 @@ namespace vizprog_beadando
             }
 
             db.cn.SaveChanges();
-
-            if (dg == dgAutok)
-            {
-                dgAutok.ItemsSource = db.cn.Autok.ToList();
-            }
-            else
-            {
-                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList();
-            }
+            updateData();
         }
 
         private void keresesChange(object sender, TextChangedEventArgs e)
         {
-            if (dgAutok.Visibility == Visibility.Visible)
-            {
-                dgAutok.ItemsSource = db.cn.Autok.ToList().FindAll(i => i.marka.ToLower().Contains(kereses.Text.ToLower()));
-            }
-            else
-            {
-                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList().FindAll(i => i.berlo.ToLower().Contains(kereses.Text.ToLower()));
-            }
+            updateData();
         }
     }
 }

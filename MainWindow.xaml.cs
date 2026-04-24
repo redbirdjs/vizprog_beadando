@@ -53,7 +53,35 @@ namespace vizprog_beadando
 
         private void menuModosit(object sender, RoutedEventArgs e)
         {
+            DataGrid dg = dgAutok.Visibility == Visibility.Visible ? dgAutok : dgBerlesek;
+            if (dg.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Nincs kijelölt elem!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            // TODO: Több elem módosítás -> egymás után megnyitja a módosító ablakot, amíg van kijelölt elem
+            for (int i = 0; i < dg.SelectedItems.Count; i++)
+            {
+                if (dg.SelectedItems[i] is Auto auto)
+                {
+                    ModositAuto ma = new ModositAuto(auto);
+                    ma.ShowDialog();
+                }
+                else if (dg.SelectedItems[i] is Berles berles)
+                {
+                    ModositBerles mb = new ModositBerles(berles);
+                    mb.ShowDialog();
+                }
+            }
 
+            if (dgAutok.Visibility == Visibility.Visible)
+            {
+                dgAutok.ItemsSource = db.cn.Autok.ToList().FindAll(i => i.marka.ToLower().Contains(kereses.Text.ToLower()));
+            }
+            else
+            {
+                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList().FindAll(i => i.berlo.ToLower().Contains(kereses.Text.ToLower()));
+            }
         }
 
         private void menuTorles(object sender, RoutedEventArgs e)
@@ -81,9 +109,13 @@ namespace vizprog_beadando
             db.cn.SaveChanges();
 
             if (dg == dgAutok)
+            {
                 dgAutok.ItemsSource = db.cn.Autok.ToList();
+            }
             else
+            {
                 dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList();
+            }
         }
 
         private void keresesChange(object sender, TextChangedEventArgs e)

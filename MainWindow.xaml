@@ -15,6 +15,7 @@
             <MenuItem Header="Hozzáadás" Click="menuUj" />
             <MenuItem Header="Módosítás" Click="menuModosit" />
             <MenuItem Header="Törlés" Click="menuTorles" />
+            <MenuItem Header="Kereső" Click="menuKereso" />
         </Menu>
 
         <DockPanel DockPanel.Dock="Top" Margin="0 2 4 2">
@@ -22,7 +23,7 @@
             <TextBox x:Name="kereses" VerticalAlignment="Center" Padding="2" TextChanged="keresesChange" />
         </DockPanel>
 
-        <DataGrid x:Name="dgAutok" IsReadOnly="True" DockPanel.Dock="Top" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}">
+        <DataGrid x:Name="dgAutok" IsReadOnly="True" DockPanel.Dock="Top" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}" BorderThickness="0,0,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" />
                 <DataGridTextColumn Header="Márka" Binding="{Binding marka}" />
@@ -31,7 +32,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="dgBerlesek" IsReadOnly="True" DockPanel.Dock="Top" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}">
+        <DataGrid x:Name="dgBerlesek" IsReadOnly="True" DockPanel.Dock="Top" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}" BorderThickness="0,0,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" />
                 <DataGridTextColumn Header="Bérlő" Binding="{Binding berlo}" />

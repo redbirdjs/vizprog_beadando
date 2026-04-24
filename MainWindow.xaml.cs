@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Autoberles;
+using vizprog_beadando.db;
 
 namespace vizprog_beadando
 {
@@ -17,19 +17,11 @@ namespace vizprog_beadando
     /// </summary>
     public partial class MainWindow : Window
     {
-        private cnAutoberles cn;
+        private Database autoBerles = new Database();
 
         public MainWindow()
         {
             InitializeComponent();
-            cn = new();
-            DBInit();
-        }
-
-        public void DBInit()
-        {
-            cn.Database.EnsureCreated();
-            if (cn.Autok == null) return;
         }
     }
 }

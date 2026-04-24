@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vizprog_beadando"
         mc:Ignorable="d"
-        Title="ModositBerles" Height="450" Width="400">
+        Title="ModositBerles" Height="250" Width="400" WindowStartupLocation="CenterScreen">
     <DockPanel Margin="4" VerticalAlignment="Top">
         <DockPanel DockPanel.Dock="Top">
             <Label Content="Bérlő" Width="80" VerticalAlignment="Center" />

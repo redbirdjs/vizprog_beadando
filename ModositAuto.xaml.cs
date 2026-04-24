@@ -20,7 +20,6 @@ namespace vizprog_beadando
     /// </summary>
     public partial class ModositAuto : Window
     {
-        private Database db = new();
         public Auto? auto;
 
         public ModositAuto(Auto? auto)

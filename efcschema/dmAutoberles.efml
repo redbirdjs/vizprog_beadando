@@ -10,7 +10,7 @@
     <property name="tipus" type="String" p1:ValidateRequired="true" p1:Guid="68e23632-9966-47dc-8eee-90cac3bf6129">
       <column name="" />
     </property>
-    <property name="berles_dij" type="Int16" p1:ValidateRequired="true" p1:Guid="8d8e58f8-aec6-4cfd-88c7-a03a77fe4115">
+    <property name="berles_dij" type="Int32" p1:ValidateRequired="true" p1:Guid="8d8e58f8-aec6-4cfd-88c7-a03a77fe4115">
       <column name="" />
     </property>
   </class>

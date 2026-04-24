@@ -62,7 +62,7 @@ namespace vizprog_beadando
                 MessageBox.Show("Nincs kijelölt elem!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            // TODO: Több elem módosítás -> egymás után megnyitja a módosító ablakot, amíg van kijelölt elem
+
             for (int i = 0; i < dg.SelectedItems.Count; i++)
             {
                 if (dg.SelectedItems[i] is Auto auto)

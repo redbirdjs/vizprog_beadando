@@ -35,8 +35,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" />
                 <DataGridTextColumn Header="Bérlő" Binding="{Binding berlo}" />
-                <DataGridTextColumn Header="Bérlés kezdete" Binding="{Binding kezdo_datum}" />
-                <DataGridTextColumn Header="Bérlés vége" Binding="{Binding vege_datum}" />
+                <DataGridTextColumn Header="Bérlés kezdete" Binding="{Binding kezdo_datum, StringFormat=\{0:yyyy.MM.dd\}}" />
+                <DataGridTextColumn Header="Bérlés vége" Binding="{Binding vege_datum, StringFormat=\{0:yyyy.MM.dd\}}" />
                 <DataGridTextColumn Header="Autó ID" Binding="{Binding Auto.id}" />
             </DataGrid.Columns>
         </DataGrid>

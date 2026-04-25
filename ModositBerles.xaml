@@ -13,7 +13,7 @@
         </DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Label Content="Kezdő dátum" Width="80" VerticalAlignment="Center" />
-            <DatePicker x:Name="kezdo_datum" VerticalAlignment="Center" Text="2026-02-04" />
+            <DatePicker x:Name="kezdo_datum" VerticalAlignment="Center" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Label Content="Vég dátum" Width="80" VerticalAlignment="Center" />

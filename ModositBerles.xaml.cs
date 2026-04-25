@@ -61,6 +61,13 @@ namespace vizprog_beadando
                 MessageBox.Show("A vége dátum nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            DateTime kezdo = DateTime.Parse(kezdo_datum.Text);
+            DateTime vege = DateTime.Parse(vege_datum.Text);
+            if (kezdo > vege)
+            {
+                MessageBox.Show("A kezdő dátum nem lehet később mint a vége dátum!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (auto.SelectedItem == null)
             {
                 MessageBox.Show("A bérlés hozzáadásához ki kell választani egy autót!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -74,8 +81,8 @@ namespace vizprog_beadando
             {
                 id = id,
                 berlo = berlo.Text,
-                kezdo_datum = DateTime.Parse(kezdo_datum.Text),
-                vege_datum = DateTime.Parse(vege_datum.Text),
+                kezdo_datum = kezdo,
+                vege_datum = vege,
                 Auto = db.cn.Autok.First(a => a.id == autoId)
             };
 

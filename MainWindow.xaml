@@ -23,7 +23,14 @@
 
         <DockPanel DockPanel.Dock="Top" Margin="0 2 4 2">
             <Label Content="Keresés:" VerticalAlignment="Center" />
-            <TextBox x:Name="kereses" VerticalAlignment="Center" Padding="2" TextChanged="keresesChange" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="200" />
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="kereses" VerticalAlignment="Center" Margin="0 0 4 0" Padding="2" TextChanged="keresesChange" />
+                <Button x:Name="keresesTorles" Grid.Column="1" VerticalAlignment="Center" Padding="2" Click="KeresesTorles_Click">Keresés törlése</Button>
+            </Grid>
         </DockPanel>
 
         <DataGrid x:Name="dgAutok" IsReadOnly="True" DockPanel.Dock="Top" Visibility="Collapsed" AutoGenerateColumns="False" ItemsSource="{Binding}" BorderThickness="0,0,0,0">

@@ -204,5 +204,11 @@ namespace vizprog_beadando
             kereses.Text = bk.berloFilter;
             updateData(bk.berloFilter);
         }
+
+        private void KeresesTorles_Click(object sender, RoutedEventArgs e)
+        {
+            keresesTorles.IsEnabled = false;
+            kereses.Text = "";
+        }
     }
 }

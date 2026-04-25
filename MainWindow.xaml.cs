@@ -171,12 +171,24 @@ namespace vizprog_beadando
 
         private void menuAutoKereso(object sender, RoutedEventArgs e)
         {
+            this.Title = "Autóbérlés - Autók";
+            dgBerlesek.Visibility = Visibility.Collapsed;
+            dgAutok.Visibility = Visibility.Visible;
+            updateData();
 
+            AutoKereso ak = new AutoKereso();
+            ak.ShowDialog();
         }
 
         private void menuBerlesKereso(object sender, RoutedEventArgs e)
         {
+            this.Title = "Autóbérlés - Bérlések";
+            dgAutok.Visibility = Visibility.Collapsed;
+            dgBerlesek.Visibility = Visibility.Visible;
+            updateData();
 
+            BerloKereso bk = new BerloKereso();
+            bk.ShowDialog();
         }
     }
 }

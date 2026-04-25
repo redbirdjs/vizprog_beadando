@@ -174,10 +174,16 @@ namespace vizprog_beadando
             this.Title = "Autóbérlés - Autók";
             dgBerlesek.Visibility = Visibility.Collapsed;
             dgAutok.Visibility = Visibility.Visible;
+            kereses.Text = "";
             updateData();
 
             AutoKereso ak = new AutoKereso();
             ak.ShowDialog();
+
+            if (ak.autoFilter == null) return;
+
+            kereses.Text = ak.autoFilter;
+            updateData(ak.autoFilter);
         }
 
         private void menuBerlesKereso(object sender, RoutedEventArgs e)

@@ -17,14 +17,18 @@ namespace vizprog_beadando
     /// </summary>
     public partial class AutoKereso : Window
     {
+        public string? autoFilter;
+
         public AutoKereso()
         {
             InitializeComponent();
+            autoKereses.Focus();
         }
 
         private void autoKereso_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.autoFilter = autoKereses.Text.ToLower();
+            this.Close();
         }
     }
 }

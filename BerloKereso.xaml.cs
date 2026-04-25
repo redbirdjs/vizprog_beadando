@@ -17,14 +17,18 @@ namespace vizprog_beadando
     /// </summary>
     public partial class BerloKereso : Window
     {
+        public string? berloFilter;
+
         public BerloKereso()
         {
             InitializeComponent();
+            berloKereses.Focus();
         }
 
         private void berloKereses_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.berloFilter = berloKereses.Text.ToLower();
+            this.Close();
         }
     }
 }

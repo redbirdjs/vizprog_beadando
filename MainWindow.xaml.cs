@@ -31,15 +31,15 @@ namespace vizprog_beadando
             updateData();
         }
        
-        private void updateData()
+        private void updateData(string? filter = null)
         {
             if (dgAutok.Visibility == Visibility.Visible)
             {
-                dgAutok.ItemsSource = db.cn.Autok.ToList().FindAll(i => i.marka.ToLower().Contains(kereses.Text.ToLower()));
+                dgAutok.ItemsSource = db.cn.Autok.ToList().FindAll(i => filter == null ? i.marka.ToLower().Contains(kereses.Text.ToLower()) : i.marka.ToLower().Contains(filter));
             }
             else
             {
-                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList().FindAll(i => i.berlo.ToLower().Contains(kereses.Text.ToLower()));
+                dgBerlesek.ItemsSource = db.cn.Berlesek.Include(p => p.Auto).ToList().FindAll(i => filter == null ? i.berlo.ToLower().Contains(kereses.Text.ToLower()) : i.berlo.ToLower().Contains(filter));
             }
         }
 

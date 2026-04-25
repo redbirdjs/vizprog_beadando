@@ -48,7 +48,22 @@
                 <DataGridTextColumn Header="Bérlő" Binding="{Binding berlo}" />
                 <DataGridTextColumn Header="Bérlés kezdete" Binding="{Binding kezdo_datum, StringFormat=\{0:yyyy.MM.dd\}}" />
                 <DataGridTextColumn Header="Bérlés vége" Binding="{Binding vege_datum, StringFormat=\{0:yyyy.MM.dd\}}" />
-                <DataGridTextColumn Header="Autó ID" Binding="{Binding Auto.id}" />
+                <DataGridTemplateColumn Header="Autó">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="#{0} {1} {2} ({3} Ft)">
+                                        <Binding Path="Auto.id"/>
+                                        <Binding Path="Auto.marka"/>
+                                        <Binding Path="Auto.tipus"/>
+                                        <Binding Path="Auto.berles_dij"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

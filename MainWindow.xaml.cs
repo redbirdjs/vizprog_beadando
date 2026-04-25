@@ -28,6 +28,7 @@ namespace vizprog_beadando
 
             this.Title = "Autóbérlés - Autók";
             dgAutok.Visibility = Visibility.Visible;
+            keresesTorles.IsEnabled = kereses.Text.Length != 0;
             updateData();
         }
        
@@ -166,6 +167,7 @@ namespace vizprog_beadando
 
         private void keresesChange(object sender, TextChangedEventArgs e)
         {
+            keresesTorles.IsEnabled = kereses.Text.Length != 0;
             updateData();
         }
 

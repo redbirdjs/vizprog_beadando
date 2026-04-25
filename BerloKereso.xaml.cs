@@ -27,7 +27,7 @@ namespace vizprog_beadando
 
         private void berloKereses_Click(object sender, RoutedEventArgs e)
         {
-            this.berloFilter = berloKereses.Text.ToLower();
+            this.berloFilter = berloKereses.Text;
             this.Close();
         }
     }

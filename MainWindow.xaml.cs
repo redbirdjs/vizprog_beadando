@@ -185,7 +185,7 @@ namespace vizprog_beadando
             if (ak.autoFilter == null) return;
 
             kereses.Text = ak.autoFilter;
-            updateData(ak.autoFilter);
+            updateData(ak.autoFilter.ToLower());
         }
 
         private void menuBerlesKereso(object sender, RoutedEventArgs e)
@@ -202,7 +202,7 @@ namespace vizprog_beadando
             if (bk.berloFilter == null) return;
 
             kereses.Text = bk.berloFilter;
-            updateData(bk.berloFilter);
+            updateData(bk.berloFilter.ToLower());
         }
 
         private void KeresesTorles_Click(object sender, RoutedEventArgs e)

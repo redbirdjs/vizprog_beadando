@@ -27,7 +27,7 @@ namespace vizprog_beadando
 
         private void autoKereso_Click(object sender, RoutedEventArgs e)
         {
-            this.autoFilter = autoKereses.Text.ToLower();
+            this.autoFilter = autoKereses.Text;
             this.Close();
         }
     }

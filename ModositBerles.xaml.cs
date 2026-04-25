@@ -46,6 +46,27 @@ namespace vizprog_beadando
 
         private void modositClick(object sender, RoutedEventArgs e)
         {
+            if (berlo.Text == "")
+            {
+                MessageBox.Show("A bérlő neve nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (kezdo_datum.Text == "")
+            {
+                MessageBox.Show("A kezdő dátum nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (vege_datum.Text == "")
+            {
+                MessageBox.Show("A vége dátum nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (auto.SelectedItem == null)
+            {
+                MessageBox.Show("A bérlés hozzáadásához ki kell választani egy autót!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             short id = this.berles != null ? this.berles.id : (short)(-1);
             short autoId = short.Parse(auto.SelectedItem.ToString()!.Split(' ')[0].Split('#')[1]);
 

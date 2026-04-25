@@ -191,10 +191,16 @@ namespace vizprog_beadando
             this.Title = "Autóbérlés - Bérlések";
             dgAutok.Visibility = Visibility.Collapsed;
             dgBerlesek.Visibility = Visibility.Visible;
+            kereses.Text = "";
             updateData();
 
             BerloKereso bk = new BerloKereso();
             bk.ShowDialog();
+
+            if (bk.berloFilter == null) return;
+
+            kereses.Text = bk.berloFilter;
+            updateData(bk.berloFilter);
         }
     }
 }

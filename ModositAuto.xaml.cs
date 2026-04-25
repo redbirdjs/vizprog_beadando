@@ -41,9 +41,24 @@ namespace vizprog_beadando
 
         private void modositClick(object sender, RoutedEventArgs e)
         {
+            if (marka.Text == "")
+            {
+                MessageBox.Show("A márka mező nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (tipus.Text == "")
+            {
+                MessageBox.Show("A típus mező nem lehet üres!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (!int.TryParse(berles_dij.Text, out int berlesDij))
             {
-                MessageBox.Show("A bérlés díjának egy egész számnak kell lennie.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A bérlés díjának egy egész számnak kell lennie!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (berlesDij < 0)
+            {
+                MessageBox.Show("A bérlés díjának nem lehet negatívnak lennie!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

@@ -11,6 +11,7 @@ namespace vizprog_beadando.db
     public class Database
     {
         public cnAutoberles cn { get; set; }
+        private static bool enableFill = true;
 
         public Database()
         {
@@ -21,12 +22,14 @@ namespace vizprog_beadando.db
 
             if (!cn.Autok.Any())
             {
-                FillWithData();
+                FillWithData(enableFill);
             }
         }
 
-        private void FillWithData()
+        private void FillWithData(bool fillEnabled)
         {
+            if (!fillEnabled) return;
+
             Random rnd = new Random();
             int db = 0;
             try
